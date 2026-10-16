@@ -1,0 +1,115 @@
+{
+  "commands": [
+    {
+      "directory": "/home/max/ncs/v3.5.0-preview3/zephyr/build/cmsis_nn_s4_rowtiling",
+      "command": "/home/max/ncs/toolchains/3645d22f6f/opt/zephyr-sdk/gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc -DKERNEL -DK_HEAP_MEM_POOL_SIZE=0 -DPICOLIBC_LONG_LONG_PRINTF_SCANF -DTF_PSA_CRYPTO_CONFIG_FILE=\\\"nrf-psa-crypto-config.h\\\" -DTF_PSA_CRYPTO_USER_CONFIG_FILE=\\\"nrf-psa-crypto-user-config.h\\\" -D_POSIX_THREAD_SAFE_FUNCTIONS=200809L -D__LINUX_ERRNO_EXTENSIONS__ -D__PROGRAM_START -D__ZEPHYR__=1 -I/home/max/cmsis_nn_s4_rowtiling-3/cmsis_nn_s4_rowtiling/src -I/home/max/ncs/v3.5.0-preview3/zephyr/build/cmsis_nn_s4_rowtiling -I/home/max/ncs/v3.5.0-preview3/zephyr/include -I/home/max/ncs/v3.5.0-preview3/zephyr/build/cmsis_nn_s4_rowtiling/zephyr/include/generated -I/home/max/ncs/v3.5.0-preview3/zephyr/soc/nordic -I/home/max/ncs/v3.5.0-preview3/zephyr/lib/libc/picolibc/include -I/home/max/ncs/v3.5.0-preview3/zephyr/soc/nordic/nrf54l/. -I/home/max/ncs/v3.5.0-preview3/zephyr/soc/nordic/common/. -I/home/max/ncs/v3.5.0-preview3/zephyr/subsys/portability/posix/c_lib_ext/getopt -I/home/max/ncs/v3.5.0-preview3/nrf/include -I/home/max/ncs/v3.5.0-preview3/nrf/tests/include -I/home/max/ncs/v3.5.0-preview3/modules/lib/cmsis-dsp/Include -I/home/max/ncs/v3.5.0-preview3/modules/lib/cmsis-nn/Include -I/home/max/ncs/v3.5.0-preview3/zephyr/modules/cmsis_6/. -I/home/max/ncs/v3.5.0-preview3/modules/hal/cmsis_6/CMSIS/Core/Include -I/home/max/ncs/v3.5.0-preview3/nrf/modules/hal_nordic/nrfx -I/home/max/ncs/v3.5.0-preview3/modules/hal/nordic/nrfx/bsp/stable -I/home/max/ncs/v3.5.0-preview3/modules/hal/nordic/nrfx/bsp/stable/templates -I/home/max/ncs/v3.5.0-preview3/modules/hal/nordic/nrfx -I/home/max/ncs/v3.5.0-preview3/modules/hal/nordic/nrfx/drivers/include -I/home/max/ncs/v3.5.0-preview3/zephyr/modules/hal_nordic/nrfx/. -I/home/max/ncs/v3.5.0-preview3/zephyr/build/cmsis_nn_s4_rowtiling/generated/library_nrf_security_psa -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/include -I/home/max/ncs/v3.5.0-preview3/modules/crypto/oberon-psa-crypto/drivers/oberon -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/threading/include -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/utils -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/drivers/cracen/sxsymcrypt/include -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/drivers/cracen/silexpk/target -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/drivers/cracen/silexpk/include -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/drivers/cracen/common/include -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/drivers/cracen/cracenpsa/include -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/drivers/cracen/cracen_sw/ext -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/drivers/cracen/cracen_sw/include -I/home/max/ncs/v3.5.0-preview3/modules/crypto/oberon-psa-crypto/include -I/home/max/ncs/v3.5.0-preview3/modules/crypto/oberon-psa-crypto/core -I/home/max/ncs/v3.5.0-preview3/modules/crypto/oberon-psa-crypto/dispatch -I/home/max/ncs/v3.5.0-preview3/modules/crypto/oberon-psa-crypto/platform -isystem /home/max/ncs/v3.5.0-preview3/zephyr/lib/libc/common/include -fno-strict-aliasing -O2 -imacros /home/max/ncs/v3.5.0-preview3/zephyr/build/cmsis_nn_s4_rowtiling/zephyr/include/generated/zephyr/autoconf.h -fno-printf-return-value -fno-common -g -gdwarf-4 -fdiagnostics-color=always -mcpu=cortex-m33 -mthumb -mabi=aapcs -mfp16-format=ieee -mtp=soft --sysroot=/home/max/ncs/toolchains/3645d22f6f/opt/zephyr-sdk/gnu/arm-zephyr-eabi/arm-zephyr-eabi -imacros /home/max/ncs/v3.5.0-preview3/zephyr/include/zephyr/toolchain/zephyr_stdint.h -Wall -Wformat -Wformat-security -Wno-format-zero-length -Wdouble-promotion -Wno-pointer-sign -Wpointer-arith -Wexpansion-to-defined -Wno-unused-but-set-variable -Werror=implicit-int -fno-pic -fno-pie -fno-asynchronous-unwind-tables -ftls-model=local-exec -fno-reorder-functions --param=min-pagesize=0 -fno-defer-pop -fmacro-prefix-map=/home/max/cmsis_nn_s4_rowtiling-3/cmsis_nn_s4_rowtiling=CMAKE_SOURCE_DIR -fmacro-prefix-map=/home/max/ncs/v3.5.0-preview3/zephyr=ZEPHYR_BASE -fmacro-prefix-map=/home/max/ncs/v3.5.0-preview3=WEST_TOPDIR -ffunction-sections -fdata-sections -specs=picolibc.specs -std=c17 -Ofast -o CMakeFiles/app.dir/src/main.c.obj -c /home/max/cmsis_nn_s4_rowtiling-3/cmsis_nn_s4_rowtiling/src/main.c",
+      "file": "/home/max/cmsis_nn_s4_rowtiling-3/cmsis_nn_s4_rowtiling/src/main.c",
+      "output": "/home/max/ncs/v3.5.0-preview3/zephyr/build/cmsis_nn_s4_rowtiling/CMakeFiles/app.dir/src/main.c.obj"
+    },
+    {
+      "directory": "/home/max/ncs/v3.5.0-preview3/zephyr/build/cmsis_nn_s4_rowtiling",
+      "command": "/home/max/ncs/toolchains/3645d22f6f/opt/zephyr-sdk/gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc -DKERNEL -DK_HEAP_MEM_POOL_SIZE=0 -DPICOLIBC_LONG_LONG_PRINTF_SCANF -DTF_PSA_CRYPTO_CONFIG_FILE=\\\"nrf-psa-crypto-config.h\\\" -DTF_PSA_CRYPTO_USER_CONFIG_FILE=\\\"nrf-psa-crypto-user-config.h\\\" -D_POSIX_THREAD_SAFE_FUNCTIONS=200809L -D__LINUX_ERRNO_EXTENSIONS__ -D__PROGRAM_START -D__ZEPHYR__=1 -I/home/max/cmsis_nn_s4_rowtiling-3/cmsis_nn_s4_rowtiling/src -I/home/max/ncs/v3.5.0-preview3/zephyr/build/cmsis_nn_s4_rowtiling -I/home/max/ncs/v3.5.0-preview3/zephyr/include -I/home/max/ncs/v3.5.0-preview3/zephyr/build/cmsis_nn_s4_rowtiling/zephyr/include/generated -I/home/max/ncs/v3.5.0-preview3/zephyr/soc/nordic -I/home/max/ncs/v3.5.0-preview3/zephyr/lib/libc/picolibc/include -I/home/max/ncs/v3.5.0-preview3/zephyr/soc/nordic/nrf54l/. -I/home/max/ncs/v3.5.0-preview3/zephyr/soc/nordic/common/. -I/home/max/ncs/v3.5.0-preview3/zephyr/subsys/portability/posix/c_lib_ext/getopt -I/home/max/ncs/v3.5.0-preview3/nrf/include -I/home/max/ncs/v3.5.0-preview3/nrf/tests/include -I/home/max/ncs/v3.5.0-preview3/modules/lib/cmsis-dsp/Include -I/home/max/ncs/v3.5.0-preview3/modules/lib/cmsis-nn/Include -I/home/max/ncs/v3.5.0-preview3/zephyr/modules/cmsis_6/. -I/home/max/ncs/v3.5.0-preview3/modules/hal/cmsis_6/CMSIS/Core/Include -I/home/max/ncs/v3.5.0-preview3/nrf/modules/hal_nordic/nrfx -I/home/max/ncs/v3.5.0-preview3/modules/hal/nordic/nrfx/bsp/stable -I/home/max/ncs/v3.5.0-preview3/modules/hal/nordic/nrfx/bsp/stable/templates -I/home/max/ncs/v3.5.0-preview3/modules/hal/nordic/nrfx -I/home/max/ncs/v3.5.0-preview3/modules/hal/nordic/nrfx/drivers/include -I/home/max/ncs/v3.5.0-preview3/zephyr/modules/hal_nordic/nrfx/. -I/home/max/ncs/v3.5.0-preview3/zephyr/build/cmsis_nn_s4_rowtiling/generated/library_nrf_security_psa -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/include -I/home/max/ncs/v3.5.0-preview3/modules/crypto/oberon-psa-crypto/drivers/oberon -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/threading/include -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/utils -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/drivers/cracen/sxsymcrypt/include -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/drivers/cracen/silexpk/target -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/drivers/cracen/silexpk/include -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/drivers/cracen/common/include -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/drivers/cracen/cracenpsa/include -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/drivers/cracen/cracen_sw/ext -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/drivers/cracen/cracen_sw/include -I/home/max/ncs/v3.5.0-preview3/modules/crypto/oberon-psa-crypto/include -I/home/max/ncs/v3.5.0-preview3/modules/crypto/oberon-psa-crypto/core -I/home/max/ncs/v3.5.0-preview3/modules/crypto/oberon-psa-crypto/dispatch -I/home/max/ncs/v3.5.0-preview3/modules/crypto/oberon-psa-crypto/platform -isystem /home/max/ncs/v3.5.0-preview3/zephyr/lib/libc/common/include -fno-strict-aliasing -O2 -imacros /home/max/ncs/v3.5.0-preview3/zephyr/build/cmsis_nn_s4_rowtiling/zephyr/include/generated/zephyr/autoconf.h -fno-printf-return-value -fno-common -g -gdwarf-4 -fdiagnostics-color=always -mcpu=cortex-m33 -mthumb -mabi=aapcs -mfp16-format=ieee -mtp=soft --sysroot=/home/max/ncs/toolchains/3645d22f6f/opt/zephyr-sdk/gnu/arm-zephyr-eabi/arm-zephyr-eabi -imacros /home/max/ncs/v3.5.0-preview3/zephyr/include/zephyr/toolchain/zephyr_stdint.h -Wall -Wformat -Wformat-security -Wno-format-zero-length -Wdouble-promotion -Wno-pointer-sign -Wpointer-arith -Wexpansion-to-defined -Wno-unused-but-set-variable -Werror=implicit-int -fno-pic -fno-pie -fno-asynchronous-unwind-tables -ftls-model=local-exec -fno-reorder-functions --param=min-pagesize=0 -fno-defer-pop -fmacro-prefix-map=/home/max/cmsis_nn_s4_rowtiling-3/cmsis_nn_s4_rowtiling=CMAKE_SOURCE_DIR -fmacro-prefix-map=/home/max/ncs/v3.5.0-preview3/zephyr=ZEPHYR_BASE -fmacro-prefix-map=/home/max/ncs/v3.5.0-preview3=WEST_TOPDIR -ffunction-sections -fdata-sections -specs=picolibc.specs -std=c17 -Ofast -o CMakeFiles/app.dir/src/kernels.c.obj -c /home/max/cmsis_nn_s4_rowtiling-3/cmsis_nn_s4_rowtiling/src/kernels.c",
+      "file": "/home/max/cmsis_nn_s4_rowtiling-3/cmsis_nn_s4_rowtiling/src/kernels.c",
+      "output": "/home/max/ncs/v3.5.0-preview3/zephyr/build/cmsis_nn_s4_rowtiling/CMakeFiles/app.dir/src/kernels.c.obj"
+    },
+    {
+      "directory": "/home/max/ncs/v3.5.0-preview3/zephyr/build/cmsis_nn_s4_rowtiling",
+      "command": "/home/max/ncs/toolchains/3645d22f6f/opt/zephyr-sdk/gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc -DKERNEL -DK_HEAP_MEM_POOL_SIZE=0 -DPICOLIBC_LONG_LONG_PRINTF_SCANF -DTF_PSA_CRYPTO_CONFIG_FILE=\\\"nrf-psa-crypto-config.h\\\" -DTF_PSA_CRYPTO_USER_CONFIG_FILE=\\\"nrf-psa-crypto-user-config.h\\\" -D_POSIX_THREAD_SAFE_FUNCTIONS=200809L -D__LINUX_ERRNO_EXTENSIONS__ -D__PROGRAM_START -D__ZEPHYR__=1 -I/home/max/ncs/v3.5.0-preview3/modules/hal/cmsis/CMSIS/Core/Include -I/home/max/ncs/v3.5.0-preview3/zephyr/include -I/home/max/ncs/v3.5.0-preview3/zephyr/build/cmsis_nn_s4_rowtiling/zephyr/include/generated -I/home/max/ncs/v3.5.0-preview3/zephyr/soc/nordic -I/home/max/ncs/v3.5.0-preview3/zephyr/lib/libc/picolibc/include -I/home/max/ncs/v3.5.0-preview3/zephyr/soc/nordic/nrf54l/. -I/home/max/ncs/v3.5.0-preview3/zephyr/soc/nordic/common/. -I/home/max/ncs/v3.5.0-preview3/zephyr/subsys/portability/posix/c_lib_ext/getopt -I/home/max/ncs/v3.5.0-preview3/nrf/include -I/home/max/ncs/v3.5.0-preview3/nrf/tests/include -I/home/max/ncs/v3.5.0-preview3/modules/lib/cmsis-dsp/Include -I/home/max/ncs/v3.5.0-preview3/modules/lib/cmsis-nn/Include -I/home/max/ncs/v3.5.0-preview3/zephyr/modules/cmsis_6/. -I/home/max/ncs/v3.5.0-preview3/modules/hal/cmsis_6/CMSIS/Core/Include -I/home/max/ncs/v3.5.0-preview3/nrf/modules/hal_nordic/nrfx -I/home/max/ncs/v3.5.0-preview3/modules/hal/nordic/nrfx/bsp/stable -I/home/max/ncs/v3.5.0-preview3/modules/hal/nordic/nrfx/bsp/stable/templates -I/home/max/ncs/v3.5.0-preview3/modules/hal/nordic/nrfx -I/home/max/ncs/v3.5.0-preview3/modules/hal/nordic/nrfx/drivers/include -I/home/max/ncs/v3.5.0-preview3/zephyr/modules/hal_nordic/nrfx/. -I/home/max/ncs/v3.5.0-preview3/zephyr/build/cmsis_nn_s4_rowtiling/generated/library_nrf_security_psa -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/include -I/home/max/ncs/v3.5.0-preview3/modules/crypto/oberon-psa-crypto/drivers/oberon -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/threading/include -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/utils -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/drivers/cracen/sxsymcrypt/include -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/drivers/cracen/silexpk/target -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/drivers/cracen/silexpk/include -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/drivers/cracen/common/include -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/drivers/cracen/cracenpsa/include -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/drivers/cracen/cracen_sw/ext -I/home/max/ncs/v3.5.0-preview3/nrf/subsys/nrf_security/src/drivers/cracen/cracen_sw/include -I/home/max/ncs/v3.5.0-preview3/modules/crypto/oberon-psa-crypto/include -I/home/max/ncs/v3.5.0-preview3/modules/crypto/oberon-psa-crypto/core -I/home/max/ncs/v3.5.0-preview3/modules/crypto/oberon-psa-crypto/dispatch -I/home/max/ncs/v3.5.0-preview3/modules/crypto/oberon-psa-crypto/platform -isystem /home/max/ncs/v3.5.0-preview3/zephyr/lib/libc/common/include -fno-strict-aliasing -O2 -imacros /home/max/ncs/v3.5.0-preview3/zephyr/build/cmsis_nn_s4_rowtiling/zephyr/include/generated/zephyr/autoconf.h -fno-printf-return-value -fno-common -g -gdwarf-4 -fdiagnostics-color=always -mcpu=cortex-m33 -mthumb -mabi=aapcs -mfp16-format=ieee -mtp=soft --sysroot=/home/max/ncs/toolchains/3645d22f6f/opt/zephyr-sdk/gnu/arm-zephyr-eabi/arm-zephyr-eabi -imacros /home/max/ncs/v3.5.0-preview3/zephyr/include/zephyr/toolchain/zephyr_stdint.h -Wall -Wformat -Wformat-security -Wno-format-zero-length -Wdouble-promotion -Wno-pointer-sign -Wpointer-arith -Wexpansion-to-defined -Wno-unused-but-set-variable -Werror=implicit-int -fno-pic -fno-pie -fno-asynchronous-unwind-tables -ftls-model=local-exec -fno-reorder-functions --param=min-pagesize=0 -fno-defer-pop -fmacro-prefix-map=/home/max/cmsis_nn_s4_rowtiling-3/cmsis_nn_s4_rowtiling=CMAKE_SOURCE_DIR -fmacro-prefix-map=/home/max/ncs/v3.5.0-preview3/zephyr=ZEPHYR_BASE -fmacro-prefix-map=/home/max/ncs/v3.5.0-preview3=WEST_TOPDIR -ffunction-sections -fdata-sections -specs=picolibc.specs -std=c17 -Ofast -o modules/cmsis-nn/CMakeFiles/modules__cmsis-nn.dir/home/max/ncs/v3.5.0-preview3/modules/lib/cmsis-nn/Source/NNSupportFunctions/arm_nn_vec_mat_mult_t_s4.c.obj -c /home/max/ncs/v3.5.0-preview3/modules/lib/cmsis-nn/Source/NNSupportFunctions/arm_nn_vec_mat_mult_t_s4.c",
+      "file": "/home/max/ncs/v3.5.0-preview3/modules/lib/cmsis-nn/Source/NNSupportFunctions/arm_nn_vec_mat_mult_t_s4.c",
+      "output": "/home/max/ncs/v3.5.0-preview3/zephyr/build/cmsis_nn_s4_rowtiling/modules/cmsis-nn/CMakeFiles/modules__cmsis-nn.dir/home/max/ncs/v3.5.0-preview3/modules/lib/cmsis-nn/Source/NNSupportFunctions/arm_nn_vec_mat_mult_t_s4.c.obj"
+    }
+  ],
+  "cmsis_path": "/home/max/ncs/v3.5.0-preview3/modules/lib/cmsis-nn",
+  "optimization_check": {
+    "status": "PASS",
+    "sources": [
+      {
+        "file": "/home/max/cmsis_nn_s4_rowtiling-3/cmsis_nn_s4_rowtiling/src/main.c",
+        "ordered_flags": [
+          "-O2",
+          "-Ofast"
+        ],
+        "effective_level": "-Ofast"
+      },
+      {
+        "file": "/home/max/cmsis_nn_s4_rowtiling-3/cmsis_nn_s4_rowtiling/src/kernels.c",
+        "ordered_flags": [
+          "-O2",
+          "-Ofast"
+        ],
+        "effective_level": "-Ofast"
+      },
+      {
+        "file": "/home/max/ncs/v3.5.0-preview3/modules/lib/cmsis-nn/Source/NNSupportFunctions/arm_nn_vec_mat_mult_t_s4.c",
+        "ordered_flags": [
+          "-O2",
+          "-Ofast"
+        ],
+        "effective_level": "-Ofast"
+      }
+    ],
+    "scope": "Last explicit -O level only; inspect full commands for other differences."
+  },
+  "cache": {
+    "BOARD": "nrf54lm20dk/nrf54lm20b/cpuapp",
+    "CMAKE_BUILD_TYPE": "",
+    "CMAKE_C_COMPILER": "/home/max/ncs/toolchains/3645d22f6f/opt/zephyr-sdk/gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc",
+    "CMAKE_C_FLAGS": "",
+    "ZEPHYR_BASE": "/home/max/ncs/v3.5.0-preview3/zephyr",
+    "ZEPHYR_SDK_INSTALL_DIR": "/home/max/ncs/toolchains/3645d22f6f/opt/zephyr-sdk"
+  },
+  "cmsis_revision": {
+    "command": [
+      "git",
+      "-C",
+      "/home/max/ncs/v3.5.0-preview3/modules/lib/cmsis-nn",
+      "rev-parse",
+      "HEAD"
+    ],
+    "returncode": 0,
+    "output": "d20117c9e88cf9018d6fa06744dddac700c3e3a1\n"
+  },
+  "cmsis_tracked_changes": {
+    "command": [
+      "git",
+      "-C",
+      "/home/max/ncs/v3.5.0-preview3/modules/lib/cmsis-nn",
+      "status",
+      "--porcelain",
+      "--untracked-files=no"
+    ],
+    "returncode": 0,
+    "output": ""
+  },
+  "source_sha256": {
+    "Source/NNSupportFunctions/arm_nn_vec_mat_mult_t_s4.c": "095db5e7ae0916fdbdcac1280bfc796b7e90f27ee01999f73683fed53cb7b656",
+    "Include/arm_nnsupportfunctions.h": "891f62fca60714634eb3036ec226ea0408be4daf040d73e34fed864372f77793"
+  },
+  "compiler_version": {
+    "command": [
+      "/home/max/ncs/toolchains/3645d22f6f/opt/zephyr-sdk/gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc",
+      "--version"
+    ],
+    "returncode": 0,
+    "output": "arm-zephyr-eabi-gcc (Zephyr SDK 1.0.1) 14.3.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+  },
+  "stock_feature_macros": {
+    "returncode": 0,
+    "macros": [
+      "#define ARM_MATH_DSP 1",
+      "#define __ARM_FEATURE_DSP 1"
+    ],
+    "stderr": ""
+  },
+  "CMAKE_OBJDUMP": {
+    "tool": "/home/max/ncs/toolchains/3645d22f6f/opt/zephyr-sdk/gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-objdump",
+    "returncode": 0
+  },
+  "CMAKE_NM": {
+    "tool": "/home/max/ncs/toolchains/3645d22f6f/opt/zephyr-sdk/gnu/arm-zephyr-eabi/bin/arm-zephyr-eabi-nm",
+    "returncode": 0
+  },
+  "CMAKE_SIZE": {
+    "error": "Tool not recorded in CMakeCache; collect manually"
+  }
+}

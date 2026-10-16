@@ -1,0 +1,2 @@
+#define BENCH_CMSIS_REV "@BENCH_CMSIS_REV@"
+#define BENCH_BOARD "@BOARD@"
