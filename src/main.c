@@ -11,8 +11,12 @@
 #include <zephyr/irq.h>
 #include <zephyr/sys/printk.h>
 #include <cmsis_core.h>
+#include <nrfx.h>
+#include <hal/nrf_cache.h>
+#include <hal/nrf_rramc.h>
 #include "arm_nnsupportfunctions.h"
 #include "build_info.h"
+#include "rram_weights.h"
 #define PRINT printk
 #endif
 
@@ -191,9 +195,17 @@ static int enable_cycle_counter(void)
     return DWT->CYCCNT != start;
 }
 
-static uint32_t time_kernel(bench_kernel_fn run, const struct bench_args *p)
+static uint32_t time_kernel_with_cache(bench_kernel_fn run,
+                                       const struct bench_args *p,
+                                       uint32_t *hits_out,
+                                       uint32_t *misses_out)
 {
     unsigned int key = irq_lock();
+#if defined(CACHE_PROFILINGENABLE_ENABLE_Msk)
+    NRF_ICACHE->PROFILINGENABLE = 0;
+    NRF_ICACHE->PROFILINGCLEAR = 1;
+    NRF_ICACHE->PROFILINGENABLE = 1;
+#endif
     __DSB();
     __ISB();
     __asm__ volatile("" ::: "memory");
@@ -203,9 +215,26 @@ static uint32_t time_kernel(bench_kernel_fn run, const struct bench_args *p)
     __asm__ volatile("" ::: "memory");
     __DSB();
     const uint32_t end = DWT->CYCCNT;
+#if defined(CACHE_PROFILINGENABLE_ENABLE_Msk)
+    NRF_ICACHE->PROFILINGENABLE = 0;
+    if (hits_out) {
+        *hits_out = NRF_ICACHE->HIT;
+    }
+    if (misses_out) {
+        *misses_out = NRF_ICACHE->MISS;
+    }
+#else
+    if (hits_out) *hits_out = 0;
+    if (misses_out) *misses_out = 0;
+#endif
     __asm__ volatile("" ::: "memory");
     irq_unlock(key);
     return end - begin;
+}
+
+static uint32_t time_kernel(bench_kernel_fn run, const struct bench_args *p)
+{
+    return time_kernel_with_cache(run, p, NULL, NULL);
 }
 
 static void empty_kernel(const struct bench_args *p)
@@ -214,9 +243,9 @@ static void empty_kernel(const struct bench_args *p)
     __asm__ volatile("" ::: "memory");
 }
 
-static void sort_samples(uint32_t *v)
+static void sort_samples(uint32_t *v, unsigned n)
 {
-    for (unsigned i = 1; i < SAMPLES; ++i) {
+    for (unsigned i = 1; i < n; ++i) {
         const uint32_t x = v[i];
         unsigned j = i;
         while (j && v[j - 1] > x) {
@@ -265,11 +294,49 @@ static int benchmark_shape(int rows, int cols, int offset)
             PRINT(",%u", (unsigned)samples[k][s]);
         }
         PRINT("\n");
-        sort_samples(samples[k]);
+        sort_samples(samples[k], SAMPLES);
         PRINT("RESULT,%d,%d,%d,%s,%u,%u,%u,%08x\n", rows, cols, offset,
               kernels[k].name, (unsigned)samples[k][0],
               (unsigned)samples[k][SAMPLES / 2], (unsigned)samples[k][SAMPLES - 1],
               (unsigned)checksum(&p));
+    }
+    return 1;
+}
+
+static int benchmark_rram_suite(const char *mode_label)
+{
+    static const int rram_kernels[] = {0, 1, 5, 8, 9}; /* stock, cmsis_u16_or, tile2_C, tile4_C, tile4_C_nospill */
+    static const int shapes[][2] = {{64, 64}, {128, 256}, {256, 256}, {128, 512}, {256, 512}};
+    const unsigned rram_samples = 11;
+
+    for (unsigned s = 0; s < sizeof(shapes) / sizeof(shapes[0]); ++s) {
+        const int rows = shapes[s][0];
+        const int cols = shapes[s][1];
+        struct bench_args p = make_args(rows, cols);
+        fill_inputs(&p, 0x98765432u + rows * 123u + cols, 0, 0);
+        p.weights = rram_weight_storage;
+        p.input_offset = 37;
+        prepare_expected(&p);
+        memset(out_storage, 0x5a, sizeof(out_storage));
+
+        for (unsigned idx = 0; idx < sizeof(rram_kernels) / sizeof(rram_kernels[0]); ++idx) {
+            const int k = rram_kernels[idx];
+            uint32_t cyc[11];
+            uint32_t last_hits = 0, last_misses = 0;
+            kernels[k].run(&p);
+            if (!verify(&p, k)) {
+                return 0;
+            }
+            for (unsigned r = 0; r < rram_samples; ++r) {
+                cyc[r] = time_kernel_with_cache(kernels[k].run, &p, &last_hits, &last_misses);
+                output_sink ^= checksum(&p);
+            }
+            sort_samples(cyc, rram_samples);
+            PRINT("RRAM_RESULT,%s,%d,%d,%s,min=%u,med=%u,max=%u,icache_hit=%u,icache_miss=%u\n",
+                  mode_label, rows, cols, kernels[k].name,
+                  (unsigned)cyc[0], (unsigned)cyc[rram_samples / 2], (unsigned)cyc[rram_samples - 1],
+                  (unsigned)last_hits, (unsigned)last_misses);
+        }
     }
     return 1;
 }
@@ -317,6 +384,33 @@ int main(void)
             return 1;
         }
     }
+
+    PRINT("MEM_ADDR,rram_weights=0x%08x,sram_weights=0x%08x,ICACHE_ENABLE=%u,RRAMC_LOWPOWER=0x%08x,RRAMC_STANDBY=0x%08x\n",
+          (unsigned)(uintptr_t)rram_weight_storage,
+          (unsigned)(uintptr_t)weight_storage,
+          (unsigned)NRF_ICACHE->ENABLE,
+          (unsigned)NRF_RRAMC->POWER.LOWPOWERCONFIG,
+          (unsigned)NRF_RRAMC->POWER.STANDBYCONFIG);
+
+    if (!benchmark_rram_suite("default_rram")) {
+        return 1;
+    }
+
+    /* Test Stine's recommendation: keep RRAMC awake / standby config */
+    const uint32_t orig_lp = NRF_RRAMC->POWER.LOWPOWERCONFIG;
+    const uint32_t orig_sb = NRF_RRAMC->POWER.STANDBYCONFIG;
+    NRF_RRAMC->POWER.LOWPOWERCONFIG = 3u; /* Active / no power-off penalty */
+    NRF_RRAMC->POWER.STANDBYCONFIG = 0u;
+    __DSB();
+    __ISB();
+
+    if (!benchmark_rram_suite("tuned_rram")) {
+        return 1;
+    }
+
+    NRF_RRAMC->POWER.LOWPOWERCONFIG = orig_lp;
+    NRF_RRAMC->POWER.STANDBYCONFIG = orig_sb;
+
     PRINT("DONE,PASS,sink=%08x\n", (unsigned)output_sink);
     return 0;
 #endif
